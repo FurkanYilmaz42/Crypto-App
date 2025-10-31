@@ -1,7 +1,10 @@
+import { LoaderCircle } from "lucide-react"
 
-const Loader = () => {
+const Loader = ({designs}) => {
   return (
-    <div>Loader</div>
+    <div className={`flex items-center justify-center ${designs} my-[200px]`}>
+      <LoaderCircle className="animate-spin text-blue-500 size-8"/>
+    </div>
   )
 }
 
