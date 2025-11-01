@@ -16,6 +16,9 @@ const Detail = () => {
   const [error, setError] = useState(null);
   const [coin, setCoin] = useState(null);
   const [refreshing, setRefreshing] = useState(true);
+  const [historyLoading, setHistoryLoading] = useState(true);
+  const [priceHistory, setPriceHistory] = useState([]);
+  const [selectedPeriod, setSelectedPeriod] = useState(7);
 
   //coin detaylarini cekip state guncelleyen fonksiyon
   const fetchCoinDetails = useCallback(
@@ -61,7 +64,7 @@ const Detail = () => {
 
       <CoinPrice coin={coin} />
 
-      <CoinChartSection coin={coin} />
+      <CoinChartSection coin={coin} selectedPeriod={selectedPeriod} setSelectedPeriod={setSelectedPeriod}/>
 
       <CoinStats coin={coin} />
 

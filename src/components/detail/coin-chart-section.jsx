@@ -1,7 +1,7 @@
 import { Calendar } from "lucide-react";
 import PriceChart from "./price-chart";
 
-const CoinChartSection = ({coin}) => {
+const CoinChartSection = ({ coin, selectedPeriod, setSelectedPeriod }) => {
   const periodOptions = [
     { day: 1, label: "1G" },
     { day: 7, label: "7G" },
@@ -12,7 +12,6 @@ const CoinChartSection = ({coin}) => {
   return (
     <div className="detail-container">
       <div className="flex items-center justify-between mb-6">
-
         <div className="flex items-center gap-2">
           <Calendar className="size-5 text-gray-600 dark:text-gray-400 " />
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -23,7 +22,12 @@ const CoinChartSection = ({coin}) => {
         <div className="flex gap-2">
           {periodOptions.map(({ day, label }) => (
             <button
-              className={`px-3 py-1 text-sm rounded-md transition bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600`}
+              onClick={() => setSelectedPeriod(day)}
+              className={`px-3 py-1 text-sm rounded-md transition ${
+                selectedPeriod === day
+                  ? "bg-blue-600 text-white"
+                  : " bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+              }`}
             >
               {label}
             </button>
@@ -33,7 +37,7 @@ const CoinChartSection = ({coin}) => {
 
       {/* Fiyat Grafigi */}
       <div></div>
-      <PriceChart symbol={coin.symbol}/>
+      <PriceChart symbol={coin.symbol} />
     </div>
   );
 };

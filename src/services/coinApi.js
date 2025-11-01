@@ -14,7 +14,7 @@ const coinApi = {
   async getTopCoins() {
     const res = await api.get("/coins/markets?vs_currency=usd");
 
-      return res.data;
+    return res.data;
   },
 
   // coin detay verisi getiren fonksiyon
@@ -24,7 +24,11 @@ const coinApi = {
   },
 
   // fiyat gecmisini getiren fonksiyon
-  async getPriceHistory() {},
+  async getPriceHistory(id, days) {
+    const res = await api.get(`/coins/${id}/market_chart`, {
+      params: { vs_currency: "usd", days: days },
+    });
+  },
 };
 
 export default coinApi;
